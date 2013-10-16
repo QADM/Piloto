@@ -3,10 +3,85 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p=""> 
+      xmlns:p="http://primefaces.org/ui"> 
 
-<h:head></h:head> 
-<body> 
+<h:head>
+<title>Catalogo de Prueba</title>
+<style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
 
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+     </style>
+</h:head> 
+<body>
+<p:layout fullPage="true">
+
+	<p:layoutUnit position="north" size="69" scrollable="null" >
+		<p:growl id="messages"/> 
+		<h:panelGrid columns="3" width="100%">
+		<p:graphicImage library="images" name="header.png" width="100px" height="45px" ></p:graphicImage>
+		</h:panelGrid>
+		<p:toolbar  style="height:36px; float:right"  >
+			<p:toolbarGroup align="right">
+				<p:commandLink value="Cerrar Sesion" style="float:right;" actionListener="#{loginBean.logout}"></p:commandLink>
+				<p:spacer width="20"></p:spacer>
+			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+				<p:outputLabel value="Usuario: #{loginBean.username} " style="float:left;"></p:outputLabel>
+			</p:toolbarGroup>
+		</p:toolbar>
+		</p:layoutUnit>
+		<p:layoutUnit position="center" > 
+		<h:form id="form">
+			<h:panelGrid columns="3" width="100%">
+		<p:menubar style="float:center">  
+        <p:submenu label="Ventas" icon="ui-icon-document">  
+                <p:menuitem value="Registro de Venta" url="#" onclick="dlg1.show()"/>     
+        </p:submenu>  
+  
+        <p:submenu label="Inventario" icon="ui-icon-pencil">  
+            <p:submenu label="Productos" icon="ui-icon-contact">  
+                <p:menuitem value="Alta de Producto" url="#" onclick="dlg4.show()"/>  
+                <p:menuitem value="Consulta de Producto" url="#" onclick="dlg5.show()"/>  
+            </p:submenu>
+            <p:submenu label="Proveedores" icon="ui-icon-contact">  
+                <p:menuitem value="Alta de Proveedores" url="#" onclick="dlg6.show()"/>  
+                <p:menuitem value="Consulta de Proveedores" url="#" onclick="dlg7.show()"/>  
+            </p:submenu>
+            <p:submenu label="Servicios" icon="ui-icon-contact">  
+                <p:menuitem value="Alta de Servicios" url="#" onclick="dlg8.show()"/>  
+            </p:submenu> 
+        </p:submenu> 
+        <p:submenu label="Notas" icon="ui-icon-document">  
+            <p:menuitem value="Consulta de Notas" url="#" onclick="dlg10.show()"/>    
+        </p:submenu>  
+        <p:submenu label="Clientes" icon="ui-icon-gear">  
+                <p:menuitem value="Alta de Cliente"  icon="ui-icon-disk" onclick="dlg11.show()"/>  
+                <p:menuitem value="Consulta de Cliente"  icon="ui-icon-arrowrefresh-1-w" onclick="dlg12.show()"/>  
+        </p:submenu>  
+        <p:submenu label="Personal" icon="ui-icon-gear">    
+                <p:menuitem value="Alta de Personal" icon="ui-icon-disk" onclick="dlg13.show()"/>  
+                <p:menuitem value="Consulta de Personal"  icon="ui-icon-arrowrefresh-1-w" onclick="dlg14.show()"/>    
+        </p:submenu>
+        <p:submenu label="Ayuda" icon="ui-icon-help">  
+                <p:menuitem value="Acerca de..." url="#" onclick="dlg2.show()"/>    
+        </p:submenu>
+    </p:menubar>
+		
+		</h:panelGrid>
+		</h:form>
+		</p:layoutUnit>
+		
+
+<p:layoutUnit position="right">
+		</p:layoutUnit>
+		<p:layoutUnit position="left">
+		</p:layoutUnit> 
+</p:layout>
 </body> 
 </html>
