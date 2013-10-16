@@ -109,7 +109,12 @@
         <groupId>org.springframework.ldap</groupId>
         <artifactId>spring-ldap-core-tiger</artifactId>
         <version>1.3.2.RELEASE</version>
-    </dependency>	
+    </dependency>
+    <dependency>
+  		<groupId>org.primefaces</groupId>
+  		<artifactId>primefaces</artifactId>
+  		<version>3.5</version>
+		</dependency>	
   </dependencies>
   <build>
     <sourceDirectory>JavaSource</sourceDirectory>

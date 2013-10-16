@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Login - Inventario de Libros</title>
+	<h:outputStylesheet name="css/jquery-ui.css"></h:outputStylesheet>
+</h:head> 
+
+<h:body>
+  <h:form id="form">
+
+    <p:dialog  id="dialog" header="Acceso" widgetVar="dlg" resizable="false" showEffect="explode" hideEffect="slide" closable="false" onHide="menu()">
+
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="username" value="Usuario:" />
+			<p:inputText value="#{loginBean.username}" 
+					id="username" widgetVar="user"  label="username" binding="#{loginBean.itUsername}"/>
+			
+			<p:outputLabel for="password" value="Password:" />
+			<p:inputText value="#{loginBean.password}" 
+					id="password" widgetVar="pass" label="password" type="password" binding="#{loginBean.itPassword}"/>
+			
+			<f:facet name="footer">
+				<p:commandButton id="loginButton" value="Entrar"
+					actionListener="#{loginBean.login}" 
+					oncomplete="handleLoginRequest(xhr, status, args)" update="username password"/>
+				<p:commandButton id="registerButton" value="Registro" onclick="muestraRegistro()" update="username password" actionListener="#{loginBean.limpiarDialogoLogin}">
+				</p:commandButton>
+			</f:facet>
+		</h:panelGrid>
+    </p:dialog>
+    
+    <p:dialog id="dialogR" header="Registro" widgetVar="dlgR" resizable="false" showEffect="slide" hideEffect="slide" modal="true" onHide="dlg.show()" closeOnEscape="true" >
+    	<h:panelGrid columns="2" cellpadding="5">
+    	<p:outputLabel value="Usuario: "  for="idUsuario" />
+    	<p:inputText value="#{registrarUsuarioBean.idUsuario}" id="idUsuario" label="idUsuario" binding="#{registrarUsuarioBean.itIdUsuario}"/>
+    	<p:outputLabel value="Contraseña: "  for="passwordR" />
+    	<p:inputText value="#{registrarUsuarioBean.password}" id="passwordR" label="passwordR" binding="#{registrarUsuarioBean.itPassword}"/>
+    	<p:outputLabel value="Nombre: "  for="nombre" />
+    	<p:inputText value="#{registrarUsuarioBean.nombre}" id="nombre" label="nombre" binding="#{registrarUsuarioBean.itNombre}"/>
+    	<p:outputLabel value="Apellido Paterno: "  for="apPaterno" />
+    	<p:inputText value="#{registrarUsuarioBean.apPaterno}" id="apPaterno" label="apPaterno" binding="#{registrarUsuarioBean.itApPaterno}"/>
+    	<p:outputLabel value="Apellido Materno: "  for="apMaterno" />
+    	<p:inputText value="#{registrarUsuarioBean.apMaterno}" id="apMaterno" label="apMaterno" binding="#{registrarUsuarioBean.itApMaterno}"/>
+    	<p:outputLabel value="Direccion: "  for="direccion" />
+    	<p:inputText value="#{registrarUsuarioBean.direccion}" id="direccion" label="direccion" binding="#{registrarUsuarioBean.itDireccion}"/>
+    	<p:outputLabel value="Telefono: "  for="telefono" />
+    	<p:inputText value="#{registrarUsuarioBean.telefono}" id="telefono" label="telefono" binding="#{registrarUsuarioBean.itTelefono}"/>
+    	<p:outputLabel value="E-Mail: "  for="EMail" />
+    	<p:inputText value="#{registrarUsuarioBean.EMail}" id="EMail" label="EMail" binding="#{registrarUsuarioBean.itEMail}"/>
+    	<f:facet name="footer">
+				<div align="center">
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />  
+					<p:commandButton  id="EnterButton" value="Aceptar" update="idUsuario passwordR nombre apPaterno apMaterno direccion telefono EMail" 
+					actionListener="#{registrarUsuarioBean.registraUsuario}" 
+					oncomplete="handleRegisterRequest(xhr, status, args)" />
+				</div>
+			</f:facet>
+    	</h:panelGrid>
+    	 
+    </p:dialog>
+</h:form>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	dlg.show();
+});
+
+	function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            dlg.jq.effect("shake", { times:3 }, 100);
+        } 
+        else {
+            dlg.hide();
+        }
+    }
+	function handleRegisterRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            dlgR.jq.effect("shake", { times:3 }, 100);
+        } 
+        else {
+            dlgR.hide();
+            dlg.show();
+        }
+    }
+    function muestraRegistro()
+    {
+		dlgR.show();
+    }
+
+    function menu()
+    {setTimeout(function() {
+    	document.location = "inventario.jsf";
+    }, 500);
+        }
+</script>
+</h:body> 
+</html>
+
