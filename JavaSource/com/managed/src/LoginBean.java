@@ -87,7 +87,7 @@ public class LoginBean implements Serializable{
 		this.password = password;
 	}
 
-	public void login() throws IOException, ServletException {
+	public String login() throws IOException, ServletException {
 		//RequestContext context = RequestContext.getCurrentInstance();
 		
 		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
@@ -106,6 +106,7 @@ public class LoginBean implements Serializable{
 		 
 		 FacesContext.getCurrentInstance().responseComplete();
 		//context.addCallbackParam("loggedIn", loggedIn);
+		 return null;
 
 	}
 	

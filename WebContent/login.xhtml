@@ -11,18 +11,18 @@
 </h:head> 
 
 <h:body>
-  <h:form id="form">
+  <h:form id="form" prependId="false">
 
     <p:dialog  id="dialog" header="Acceso" widgetVar="dlg" resizable="false" showEffect="explode" hideEffect="slide" closable="false" onHide="menu()">
 
 		<h:panelGrid columns="2" cellpadding="5">
-			<p:outputLabel for="username" value="Usuario:" />
+			<p:outputLabel for="j_username" value="Usuario:" />
 			<p:inputText value="#{loginBean.username}" 
-					id="username" widgetVar="user"  label="username" binding="#{loginBean.itUsername}"/>
+					id="j_username" widgetVar="user" binding="#{loginBean.itUsername}"/>
 			
-			<p:outputLabel for="password" value="Password:" />
+			<p:outputLabel for="j_password" value="Password:" />
 			<p:inputText value="#{loginBean.password}" 
-					id="password" widgetVar="pass" label="password" type="password" binding="#{loginBean.itPassword}"/>
+					id="j_password" widgetVar="pass" type="password" binding="#{loginBean.itPassword}"/>
 			<h:outputText for="_spring_security_remember_me" value="Remember me" />
   <p:selectBooleanCheckbox id="_spring_security_remember_me"
    value="#{loginBean.rememberMe}" />
