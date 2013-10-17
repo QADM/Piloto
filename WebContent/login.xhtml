@@ -28,8 +28,6 @@
 				<p:commandButton id="loginButton" value="Entrar"
 					actionListener="#{loginBean.login}" 
 					oncomplete="handleLoginRequest(xhr, status, args)" update="username password"/>
-				<p:commandButton id="registerButton" value="Registro" onclick="muestraRegistro()" update="username password" actionListener="#{loginBean.limpiarDialogoLogin}">
-				</p:commandButton>
 			</f:facet>
 		</h:panelGrid>
     </p:dialog>
