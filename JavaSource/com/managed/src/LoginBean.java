@@ -2,24 +2,25 @@ package com.managed.src;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
-import org.hibernate.Query;
 import org.primefaces.component.inputtext.InputText;
-import org.primefaces.context.RequestContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.main.resources.HibernateUtil;
-//import com.main.target.Usuario;
-
+@Component
+@Scope("request")
 @ManagedBean
 @SessionScoped
 public class LoginBean implements Serializable{
@@ -42,7 +43,7 @@ public class LoginBean implements Serializable{
 	
 	
 	public LoginBean() {
-		FacesContext.getCurrentInstance();
+		
 	}
 	
 	public InputText getItPassword() {
@@ -77,24 +78,19 @@ public class LoginBean implements Serializable{
 		this.password = password;
 	}
 
-	public void login(ActionEvent actionEvent) throws IOException {
-		RequestContext context = RequestContext.getCurrentInstance();
+	public void login() throws IOException, ServletException {
+		//RequestContext context = RequestContext.getCurrentInstance();
 		
-		if(username != null && password != null) {
-			Query query = HibernateUtil.getSessionFactory().openSession().createQuery("from Usuario where idUsuario = :user and password = :pass");
-			query.setParameter("user", this.username);
-			query.setParameter("pass", this.password);
-			List<Object> usuarios = query.list();
-			if(usuarios.size() == 0){
-				loggedIn = false;
-				limpiarDialogoLogin();
-			}
-			else
-			{
-				loggedIn = true;
-			}
-		}
-		context.addCallbackParam("loggedIn", loggedIn);
+		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+		 
+		 RequestDispatcher dispatcher = ((ServletRequest) context.getRequest())
+		  .getRequestDispatcher("/j_spring_security_check");
+		 
+		 dispatcher.forward((ServletRequest) context.getRequest(),
+		  (ServletResponse) context.getResponse());
+		 
+		 FacesContext.getCurrentInstance().responseComplete();
+		//context.addCallbackParam("loggedIn", loggedIn);
 
 	}
 	
