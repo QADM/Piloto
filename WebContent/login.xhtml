@@ -23,11 +23,13 @@
 			<p:outputLabel for="password" value="Password:" />
 			<p:inputText value="#{loginBean.password}" 
 					id="password" widgetVar="pass" label="password" type="password" binding="#{loginBean.itPassword}"/>
+			<h:outputText for="_spring_security_remember_me" value="Remember me" />
+  <p:selectBooleanCheckbox id="_spring_security_remember_me"
+   value="#{loginBean.rememberMe}" />
 			
 			<f:facet name="footer">
-				<p:commandButton id="loginButton" value="Entrar"
-					actionListener="#{loginBean.login}" 
-					oncomplete="handleLoginRequest(xhr, status, args)" update="username password"/>
+				<p:commandButton type="submit" id="loginButton" value="Entrar" ajax="false"
+					actionListener="#{loginBean.login}"  update="username password"/>
 			</f:facet>
 		</h:panelGrid>
     </p:dialog>

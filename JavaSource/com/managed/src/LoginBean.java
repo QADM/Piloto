@@ -31,7 +31,16 @@ public class LoginBean implements Serializable{
 	private String password;
 	private InputText itUsername;
 	private InputText itPassword;
+	private boolean rememberMe = false;
 	private boolean loggedIn = false;
+	
+	public boolean isRememberMe() {
+		return rememberMe;
+	}
+	
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
+	}
 	
 	public boolean isLoggedIn() {
 		return loggedIn;
@@ -85,6 +94,12 @@ public class LoginBean implements Serializable{
 		 
 		 RequestDispatcher dispatcher = ((ServletRequest) context.getRequest())
 		  .getRequestDispatcher("/j_spring_security_check");
+		 
+		 ServletRequest request = ((ServletRequest) context.getRequest());
+         
+         
+         String checkboxValue = request
+                         .getParameter("_spring_security_remember_me_input");
 		 
 		 dispatcher.forward((ServletRequest) context.getRequest(),
 		  (ServletResponse) context.getResponse());
