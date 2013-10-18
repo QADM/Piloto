@@ -8,31 +8,50 @@
 <h:head>
 	<title>Login - Presidencia</title>
 	<!--  <h:outputStylesheet name="css/jquery-ui.css"></h:outputStylesheet> -->
+	<style type="text/css">
+		.ui-dialog .ui-dialog-titlebar {
+   display: none !important;
+}
+	</style>
 </h:head> 
 
 <h:body>
   <h:form id="form" prependId="false">
 
-    <p:dialog  id="dialog" header="Acceso" widgetVar="dlg" resizable="false" showEffect="explode" hideEffect="slide" closable="false" onHide="menu()">
-
+    <p:dialog  id="dialog"  widgetVar="dlg" resizable="false" height="395" width="520" showEffect="explode" hideEffect="slide" closable="false" onHide="menu()" style="background-color:#DCDCDC;">
+		<p:spacer height="10"></p:spacer>
+		<div align="center">
+			<h:panelGrid>
+			<p:outputLabel  value="Sistema de Gestion de Proyectos" />
+			<p:outputLabel  value="para Tecnologias de la Informacion" />
+			</h:panelGrid>
+		</div>
+		<p:spacer height="10"></p:spacer>
+		<p:graphicImage library="images" name="separator_header_top.png" width="501"></p:graphicImage>
+		<p:spacer height="80"></p:spacer>
+		<div  align="center">
 		<h:panelGrid columns="2" cellpadding="5">
-			<p:outputLabel for="j_username" value="Usuario:" />
+			<p:outputLabel for="j_username" value="Usuario:" style="color:gray"/>
 			<p:inputText value="#{loginBean.username}" 
-					id="j_username" widgetVar="user" binding="#{loginBean.itUsername}"/>
+					id="j_username" widgetVar="user" binding="#{loginBean.itUsername}" style="color:gray"/>
 			
-			<p:outputLabel for="j_password" value="Password:" />
+			<p:outputLabel for="j_password" value="Password:" style="color:gray"/>
 			<p:inputText value="#{loginBean.password}" 
-					id="j_password" widgetVar="pass" type="password" binding="#{loginBean.itPassword}"/>
-			<h:outputText for="_spring_security_remember_me" value="Remember me" />
+					id="j_password" widgetVar="pass" type="password" binding="#{loginBean.itPassword}" style="color:gray"/>
+			<h:outputText for="_spring_security_remember_me" value="Remember me" style="color:gray"/>
   <p:selectBooleanCheckbox id="_spring_security_remember_me"
    value="#{loginBean.rememberMe}" />
 			
 			<f:facet name="footer">
+			<div  align="center">
 				<p:commandButton type="submit" id="loginButton" value="Entrar" ajax="false"
-					actionListener="#{loginBean.login}"  update="username password"/>
+					actionListener="#{loginBean.login}"  update="username password" style="color:gray"/>
+			</div>
 			</f:facet>
 		</h:panelGrid>
-    </p:dialog>
+		</div>
+		<p:graphicImage library="images" name="logo.png" style="float:right"></p:graphicImage>
+    </p:dialog> 
     
 </h:form>
 
