@@ -116,17 +116,17 @@
 		<div align="center">
 		<h:panelGrid columns="2">
 		<p:outputLabel value="Nombre:"></p:outputLabel>
-		<p:inputText id="nombre"></p:inputText>
+		<p:inputText id="nombre" binding="#{catalogoBean.itNombre}" value="#{catalogoBean.nombre}"></p:inputText>
 		<p:outputLabel value="Numeral:"></p:outputLabel>
-		<p:inputText id="numeral"></p:inputText>
+		<p:inputText id="numeral" binding="#{catalogoBean.itNumeral}" value="#{catalogoBean.numeral}"></p:inputText>
 		<p:outputLabel value="Tipo de Fundamento:"></p:outputLabel>
-		<p:selectOneMenu id="tipo"></p:selectOneMenu>
+		<p:selectOneMenu id="tipo" binding="#{catalogoBean.soTipo}" value="#{catalogoBean.tipos}"></p:selectOneMenu>
 		</h:panelGrid>
 		</div>
 		<p:spacer width="40"></p:spacer>
 		<f:facet name="footer">
 		<div align="center">
-			<p:commandButton value="Crear" ></p:commandButton>
+			<p:commandButton value="Crear" actionListener="#{catalogoBean.crearFundamento}"></p:commandButton>
 			</div>
 		</f:facet>
 		

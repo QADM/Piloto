@@ -133,6 +133,14 @@
 </repositories>
   <build>
     <sourceDirectory>JavaSource</sourceDirectory>
+    <resources>
+    <resource>
+      <directory>JavaSource</directory>
+      <excludes>
+         <exclude>**/*.java</exclude>
+      </excludes>
+    </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
