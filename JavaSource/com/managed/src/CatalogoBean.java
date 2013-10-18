@@ -86,9 +86,7 @@ public class CatalogoBean {
 		Session s = HibernateUtil.getSessionFactory().openSession();
 		System.out.println("Conectado: "+s.isConnected());
 		System.out.println("Abierta: "+s.isOpen());
-		Query query = s.createQuery("from TipoFundamento where tipoFundamento = :tipo order by cveTipo");
-		query.setParameter("tipo", "Tipo 1");
-		
+		Query query = s.createQuery("from TipoFundamento");		
 		System.out.println("Tamaño de consulta: "+query.list().size());
 		if(query.list().size() > 0)
 		{
