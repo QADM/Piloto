@@ -23,14 +23,18 @@
                 
                 .ui-dialog-titlebar{background-color:#336666;}
                 .ui-dialog-title{color:white}
-                
+                .ui-layout, .ui-layout-doc, .ui-layout-unit, .ui-layout-wrap, .ui-layout-bd, .ui-layout-hd{
+    border: none;
+}
+                .ui-dialog .ui-dialog-titlebar {
+   			display: none !important;}
                 
      </style>
 </h:head> 
 <body>
 <p:layout fullPage="true">
 
-	<p:layoutUnit position="north" size="100" scrollable="null" >
+	<p:layoutUnit position="north" size="100" scrollable="null">
 		<p:growl id="messages"/> 
 			<div align="center">
 				<h:panelGrid  columns="2" width="90%"   >
@@ -48,7 +52,7 @@
 				</h:panelGrid>
 			</div>
 		</p:layoutUnit>
-		<p:layoutUnit position="center" > 
+		<p:layoutUnit position="center"  style="background-color:#FAFAFA"> 
 		<h:form id="form">
 			<h:panelGrid  width="100%">
 		<p:menubar style="float:center; margin-top:0%; background-color:#336666;" >  
@@ -103,15 +107,37 @@
 	</div>	
 
 </p:layoutUnit>
-		<p:dialog id="dialInsert" header="Ingresar Fundamento Normativo" widgetVar="dlgI" resizable="false" showEffect="slide" hideEffect="slide" modal="true" closeOnEscape="true" >
+		<p:dialog id="dialInsert" widgetVar="dlgI" width="455" resizable="false" showEffect="slide" hideEffect="slide" modal="true" closeOnEscape="true" >
+		<div style="background-image:url('/Presidencia/resources/images/separator_form.png'); height:44px; width:428px">
+		<p:spacer width="25"></p:spacer>
+		<p:outputLabel value="Crear Fundamento Normativo"></p:outputLabel>
+		</div>
+		<p:spacer width="40"></p:spacer>
+		<div align="center">
+		<h:panelGrid columns="2">
+		<p:outputLabel value="Nombre:"></p:outputLabel>
+		<p:inputText></p:inputText>
+		<p:outputLabel value="Numeral:"></p:outputLabel>
+		<p:inputText></p:inputText>
+		<p:outputLabel value="Tipo de Fundamento:"></p:outputLabel>
+		<p:selectOneMenu></p:selectOneMenu>
+		</h:panelGrid>
+		</div>
+		<p:spacer width="40"></p:spacer>
+		<f:facet name="footer">
+		<div align="center">
+			<p:commandButton value="Crear" ></p:commandButton>
+			</div>
+		</f:facet>
+		
 </p:dialog>
 
 		
 
-<p:layoutUnit position="west">
+<p:layoutUnit position="west" style="background-color:#FAFAFA">
 <p:spacer width="225"></p:spacer>
 		</p:layoutUnit>
-		<p:layoutUnit position="east">
+		<p:layoutUnit position="east" style="background-color:#FAFAFA">
 		<p:spacer width="225"></p:spacer>
 		</p:layoutUnit> 
 </p:layout>
