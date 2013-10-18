@@ -9,8 +9,8 @@
 <title>Catalogo de Prueba</title>
 <style type="text/css">
                 .ui-layout-north {
-                    z-index:20 !important;
-                    overflow:visible !important;;
+                    z-index:30 !important;
+                    overflow:visible !important;
                 }
 
                 .ui-layout-north .ui-layout-unit-content {
@@ -21,25 +21,28 @@
 <body>
 <p:layout fullPage="true">
 
-	<p:layoutUnit position="north" size="69" scrollable="null" >
+	<p:layoutUnit position="north" size="69" scrollable="null"  style="height:30%;" >
 		<p:growl id="messages"/> 
-		<h:panelGrid columns="3" width="100%">
-		<p:graphicImage library="images" name="header.png" width="100px" height="45px" ></p:graphicImage>
-		</h:panelGrid>
-		<p:toolbar  style="height:36px; float:right"  >
-			<p:toolbarGroup align="right">
-				<p:commandLink value="Cerrar Sesion" style="float:right;" actionListener="#{loginBean.logout}"></p:commandLink>
-				<p:spacer width="20"></p:spacer>
-			</p:toolbarGroup>
-			<p:toolbarGroup align="right">
-				<p:outputLabel value="Usuario: #{loginBean.username} " style="float:left;"></p:outputLabel>
-			</p:toolbarGroup>
-		</p:toolbar>
+			<div align="center">
+				<h:panelGrid  columns="2" width="90%"   >
+					  
+					<p:graphicImage library="images" style="float:left;clear:left;" name="header.png" width="800" height="40" ></p:graphicImage>
+					<p:toolbar  style="height:36px; float:right"  >
+						<p:toolbarGroup align="right" style="margin-top:10px">
+							<p:commandLink value="Cerrar Sesion" style="float:right;" actionListener="#{loginBean.logout}"></p:commandLink>
+							<p:spacer width="20"></p:spacer>
+						</p:toolbarGroup>
+						<p:toolbarGroup align="right" style="margin-top:10px">
+							<p:outputLabel value="Usuario: #{loginBean.username} " style="float:left;"></p:outputLabel>
+						</p:toolbarGroup>
+					</p:toolbar>
+				</h:panelGrid>
+			</div>
 		</p:layoutUnit>
 		<p:layoutUnit position="center" > 
 		<h:form id="form">
 			<h:panelGrid columns="3" width="100%">
-		<p:menubar style="float:center">  
+		<p:menubar style="float:center; margin-top:0%">  
         <p:submenu label="Ventas" icon="ui-icon-document">  
                 <p:menuitem value="Registro de Venta" url="#" onclick="dlg1.show()"/>     
         </p:submenu>  
@@ -72,10 +75,39 @@
                 <p:menuitem value="Acerca de..." url="#" onclick="dlg2.show()"/>    
         </p:submenu>
     </p:menubar>
-		
+			
 		</h:panelGrid>
 		</h:form>
-		</p:layoutUnit>
+		<h:panelGrid   width="30%"   >
+					<p:graphicImage library="images" style="float:left;clear:left;" name="header.ico"  ></p:graphicImage>
+					<p:commandLink value="Ingresar Fundamento Normativo" style="float:left;" ></p:commandLink>
+		</h:panelGrid>
+		
+	<div align="center">
+		<h:panelGrid   width="60%">
+			<h:form>  
+			    <p:dataTable var="car" >  
+			        <p:column headerText="Model">  
+			        </p:column>  
+			  
+			        <p:column headerText="Year">  
+			        </p:column>  
+			  
+			        <p:column headerText="Manufacturer">  
+	
+			        </p:column>  
+			  
+			        <p:column headerText="Color">  
+	
+			        </p:column>  
+			    </p:dataTable>  
+			</h:form>  
+		</h:panelGrid>
+	</div>	
+
+</p:layoutUnit>
+		
+
 		
 
 <p:layoutUnit position="right">
