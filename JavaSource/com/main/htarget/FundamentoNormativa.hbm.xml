@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 16/10/2013 04:44:18 PM by Hibernate Tools 4.0.0 -->
+<!-- Generated 18/10/2013 01:29:53 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.main.target.FundamentoNormativa" table="FUNDAMENTO_NORMATIVA" schema="SYSTEM">
+    <class name="com.main.htarget.FundamentoNormativa" table="FUNDAMENTO_NORMATIVA" schema="SYSTEM">
         <id name="cveFundamentoNormativa" type="big_decimal">
             <column name="CVE_FUNDAMENTO_NORMATIVA" precision="25" scale="0" />
             <generator class="assigned" />

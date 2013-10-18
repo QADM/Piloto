@@ -1,6 +1,6 @@
 package com.main.htarget;
 
-// Generated 16/10/2013 04:44:18 PM by Hibernate Tools 4.0.0
+// Generated 18/10/2013 01:29:53 PM by Hibernate Tools 4.0.0
 
 import java.math.BigDecimal;
 import java.util.Date;
