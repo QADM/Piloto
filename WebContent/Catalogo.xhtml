@@ -33,7 +33,7 @@
 </h:head> 
 <body>
 <p:layout fullPage="true">
-
+<h:form>
 	<p:layoutUnit position="north" size="100" scrollable="null">
 		<p:growl id="messages"/> 
 			<div align="center">
@@ -53,7 +53,6 @@
 			</div>
 		</p:layoutUnit>
 		<p:layoutUnit position="center"  style="background-color:#FAFAFA"> 
-		<h:form id="form">
 			<h:panelGrid  width="100%">
 		<p:menubar style="float:center; margin-top:0%; background-color:#336666;" >  
         <p:submenu label="Administracion" >  
@@ -78,7 +77,6 @@
     </p:menubar>
 			
 		</h:panelGrid>
-		</h:form>
 		<p:spacer height="20"></p:spacer>
 		<h:panelGrid columns="2"  width="30%"   >
 					<p:graphicImage library="images" style="float:left;clear:left;" name="add.png"  ></p:graphicImage>
@@ -86,28 +84,29 @@
 		</h:panelGrid>
 		
 	<div align="center">
-		<h:panelGrid   width="60%">
-			<h:form>  
+		<h:panelGrid   width="60%"> 
 			<p:spacer height="20"></p:spacer>
-			    <p:dataTable var="car" paginator="true" paginatorPosition="bottom" tableStyle="tabla">  
+			    <p:dataTable id="tablaFundamentos" var="fundamentos" rowKey="#{fundamentos.nombre}" value="#{catalogoBean.fundamentos}" selectionMode="single" paginator="true" paginatorPosition="bottom" rows="10" tableStyle="tabla">  
 			        <p:column >
-			        	<f:facet name="header">Nombre</f:facet>  
+			        	<f:facet name="header">Nombre</f:facet>
+			        	<p:outputLabel value="#{fundamentos.nombre}"></p:outputLabel>  
 			        </p:column>  
 			  
 			        <p:column >
-			        <f:facet name="header">Numeral</f:facet>   
+			        <f:facet name="header">Numeral</f:facet>
+			        <p:outputLabel value="#{fundamentos.numeral}"></p:outputLabel>   
 			        </p:column>  
 			  
 			        <p:column >  
-					<f:facet name="header">Opciones</f:facet> 
+					<f:facet name="header">Tipo de Fundamento</f:facet>
+					<p:outputLabel value="#{fundamentos.cveTipoFundamento}"></p:outputLabel> 
 			        </p:column>   
-			    </p:dataTable>  
-			</h:form>  
+			    </p:dataTable>   
 		</h:panelGrid>
 	</div>	
 
 </p:layoutUnit>
-		<p:dialog id="dialInsert" widgetVar="dlgI" width="455" resizable="false" showEffect="slide" hideEffect="slide" modal="true" closeOnEscape="true" >
+		<p:dialog id="dialInsert" dynamic="true" widgetVar="dlgI" width="455" resizable="false" showEffect="slide" hideEffect="slide" modal="true" closeOnEscape="true" >
 		<div style="background-image:url('/Presidencia/resources/images/separator_form.png'); height:44px; width:428px">
 		<p:spacer width="25"></p:spacer>
 		<p:outputLabel value="Crear Fundamento Normativo"></p:outputLabel>
@@ -120,13 +119,17 @@
 		<p:outputLabel value="Numeral:"></p:outputLabel>
 		<p:inputText id="numeral" binding="#{catalogoBean.itNumeral}" value="#{catalogoBean.numeral}"></p:inputText>
 		<p:outputLabel value="Tipo de Fundamento:"></p:outputLabel>
-		<p:selectOneMenu id="tipo" binding="#{catalogoBean.soTipo}" value="#{catalogoBean.tipos}"></p:selectOneMenu>
+		<p:selectOneMenu id="tipo" binding="#{catalogoBean.soTipo}" value="#{catalogoBean.tipo}">
+			<f:selectItem itemLabel="Selecciona uno" itemValue="" />  
+            <f:selectItems value="#{catalogoBean.tipos}" /> 
+		</p:selectOneMenu>
 		</h:panelGrid>
 		</div>
 		<p:spacer width="40"></p:spacer>
 		<f:facet name="footer">
 		<div align="center">
-			<p:commandButton value="Crear" actionListener="#{catalogoBean.crearFundamento}"></p:commandButton>
+			<p:commandButton value="Crear" actionListener="#{catalogoBean.crearFundamento}" update="tipo nombre numeral tablaFundamentos" 
+			oncomplete="handleRegisterRequest(xhr, status, args)"></p:commandButton>
 			</div>
 		</f:facet>
 		
@@ -140,6 +143,18 @@
 		<p:layoutUnit position="east" style="background-color:#FAFAFA">
 		<p:spacer width="225"></p:spacer>
 		</p:layoutUnit> 
+		</h:form>
 </p:layout>
+
+<script type="text/javascript">
+	function handleRegisterRequest(xhr, status, args) {
+        if(args.validationFailed || !args.register) {
+            dlgI.jq.effect("shake", { times:3 }, 100);
+        } 
+        else {
+            dlgI.hide();
+        }
+    }
+</script>
 </body> 
 </html>
